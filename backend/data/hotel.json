@@ -1,0 +1,248 @@
+{
+  "hotel": {
+    "id": "the-orchid",
+    "name": "The Orchid",
+    "description": "A premium urban hotel designed around comfortable stays, thoughtful hospitality, and convenient access to the city.",
+    "location": {
+      "city": "Bengaluru",
+      "country": "India",
+      "address": "The Orchid, Bengaluru, Karnataka, India"
+    },
+    "contact": {
+      "phone": "+91 80 0000 0000",
+      "email": "stay@example.com"
+    },
+    "check_in": {
+      "time": "2:00 PM",
+      "early_check_in": "Subject to availability"
+    },
+    "check_out": {
+      "time": "12:00 PM",
+      "late_check_out": "Subject to availability"
+    }
+  },
+
+  "amenities": [
+    {
+      "id": "amenity.wifi",
+      "name": "Wi-Fi",
+      "description": "Complimentary Wi-Fi is available throughout the hotel.",
+      "hours": "24 hours",
+      "source_id": "amenity.wifi",
+      "source_label": "Wi-Fi & connectivity"
+    },
+    {
+      "id": "amenity.pool",
+      "name": "Rooftop Swimming Pool",
+      "description": "The rooftop swimming pool is available for registered hotel guests.",
+      "hours": "7:00 AM to 9:00 PM",
+      "source_id": "policy.pool-hours",
+      "source_label": "Pool & wellness policy"
+    },
+    {
+      "id": "amenity.gym",
+      "name": "Fitness Centre",
+      "description": "The fitness centre includes cardio and strength-training equipment.",
+      "hours": "6:00 AM to 10:00 PM",
+      "source_id": "amenity.fitness",
+      "source_label": "Fitness centre information"
+    },
+    {
+      "id": "amenity.spa",
+      "name": "Wellness & Spa",
+      "description": "The wellness area offers a selection of relaxation treatments.",
+      "hours": "10:00 AM to 9:00 PM",
+      "source_id": "amenity.spa",
+      "source_label": "Wellness & spa information"
+    },
+    {
+      "id": "amenity.restaurant",
+      "name": "All-day Dining",
+      "description": "The hotel's all-day dining restaurant serves breakfast, lunch, and dinner.",
+      "hours": "6:30 AM to 11:00 PM",
+      "source_id": "amenity.restaurant",
+      "source_label": "Dining information"
+    },
+    {
+      "id": "amenity.parking",
+      "name": "Parking",
+      "description": "On-site parking is available for hotel guests.",
+      "hours": "24 hours",
+      "source_id": "amenity.parking",
+      "source_label": "Parking information"
+    }
+  ],
+
+  "dining": {
+    "breakfast": {
+      "available": true,
+      "location": "All-day Dining Restaurant",
+      "hours": "6:30 AM to 10:30 AM",
+      "description": "Breakfast is served daily at the All-day Dining Restaurant.",
+      "inclusion_note": "Breakfast inclusion depends on the selected room and rate plan.",
+      "source_id": "policy.breakfast",
+      "source_label": "Breakfast policy"
+    }
+  },
+
+  "policies": {
+    "cancellation": {
+      "summary": "Cancellation terms depend on the selected rate plan. Flexible rates may allow cancellation before the property's stated deadline, while promotional or non-refundable rates may have stricter conditions.",
+      "source_id": "policy.cancellation",
+      "source_label": "Cancellation policy"
+    },
+    "smoking": {
+      "summary": "The hotel operates as a non-smoking property. Smoking is not permitted inside guest rooms.",
+      "source_id": "policy.smoking",
+      "source_label": "Smoking policy"
+    },
+    "pets": {
+      "summary": "Pets are not permitted in guest rooms unless an exception is confirmed directly by the hotel.",
+      "source_id": "policy.pets",
+      "source_label": "Pet policy"
+    },
+    "children": {
+      "summary": "Children are welcome. Room suitability and additional guest arrangements depend on the room's maximum occupancy.",
+      "source_id": "policy.children",
+      "source_label": "Children & occupancy policy"
+    },
+    "identification": {
+      "summary": "Guests are required to provide valid government-issued identification during check-in.",
+      "source_id": "policy.identification",
+      "source_label": "Check-in requirements"
+    },
+    "extra_bed": {
+      "summary": "Extra-bed availability depends on the selected room and occupancy rules and must be confirmed for the requested stay.",
+      "source_id": "policy.extra-bed",
+      "source_label": "Extra-bed policy"
+    }
+  },
+
+  "accessibility": {
+    "summary": "Accessible facilities and room suitability can vary by room type. Guests with specific accessibility requirements should confirm the required arrangement before booking.",
+    "source_id": "faq.accessibility",
+    "source_label": "Accessibility information"
+  },
+
+  "transport": {
+    "airport_transfer": {
+      "available": true,
+      "summary": "Airport transfer assistance can be arranged subject to availability and applicable charges.",
+      "source_id": "service.airport-transfer",
+      "source_label": "Airport transfer information"
+    },
+    "local_transport": {
+      "summary": "The concierge can assist guests with local transportation information.",
+      "source_id": "service.local-transport",
+      "source_label": "Local transport information"
+    }
+  },
+
+  "faqs": [
+    {
+      "id": "faq.check-in",
+      "question": "What time is check-in?",
+      "answer": "Check-in starts at 2:00 PM. Early check-in is subject to availability.",
+      "source_id": "hotel.check-in",
+      "source_label": "Check-in information"
+    },
+    {
+      "id": "faq.check-out",
+      "question": "What time is check-out?",
+      "answer": "Check-out is by 12:00 PM. Late check-out is subject to availability.",
+      "source_id": "hotel.check-out",
+      "source_label": "Check-out information"
+    },
+    {
+      "id": "faq.pool",
+      "question": "Does the hotel have a swimming pool?",
+      "answer": "Yes. The hotel has a rooftop swimming pool that is open daily from 7:00 AM to 9:00 PM.",
+      "source_id": "policy.pool-hours",
+      "source_label": "Pool & wellness policy"
+    },
+    {
+      "id": "faq.wifi",
+      "question": "Is Wi-Fi available?",
+      "answer": "Yes. Complimentary Wi-Fi is available throughout the hotel.",
+      "source_id": "amenity.wifi",
+      "source_label": "Wi-Fi & connectivity"
+    },
+    {
+      "id": "faq.parking",
+      "question": "Does the hotel have parking?",
+      "answer": "Yes. On-site parking is available for hotel guests.",
+      "source_id": "amenity.parking",
+      "source_label": "Parking information"
+    },
+    {
+      "id": "faq.breakfast",
+      "question": "Is breakfast included?",
+      "answer": "Breakfast is available, but whether it is included depends on the selected room and rate plan.",
+      "source_id": "policy.breakfast",
+      "source_label": "Breakfast policy"
+    },
+    {
+      "id": "faq.cancellation",
+      "question": "What is the cancellation policy?",
+      "answer": "Cancellation terms depend on the selected rate plan. Flexible and promotional rates may have different cancellation conditions.",
+      "source_id": "policy.cancellation",
+      "source_label": "Cancellation policy"
+    },
+    {
+      "id": "faq.pets",
+      "question": "Are pets allowed?",
+      "answer": "Pets are not permitted in guest rooms unless an exception is confirmed directly by the hotel.",
+      "source_id": "policy.pets",
+      "source_label": "Pet policy"
+    },
+    {
+      "id": "faq.smoking",
+      "question": "Is smoking allowed?",
+      "answer": "The hotel is non-smoking, and smoking is not permitted inside guest rooms.",
+      "source_id": "policy.smoking",
+      "source_label": "Smoking policy"
+    },
+    {
+      "id": "faq.children",
+      "question": "Are children allowed?",
+      "answer": "Yes. Children are welcome. Room suitability depends on the maximum occupancy of the selected room.",
+      "source_id": "policy.children",
+      "source_label": "Children & occupancy policy"
+    },
+    {
+      "id": "faq.gym",
+      "question": "Does the hotel have a gym?",
+      "answer": "Yes. The fitness centre is open daily from 6:00 AM to 10:00 PM.",
+      "source_id": "amenity.fitness",
+      "source_label": "Fitness centre information"
+    },
+    {
+      "id": "faq.spa",
+      "question": "Does the hotel have a spa?",
+      "answer": "Yes. The wellness and spa area is open from 10:00 AM to 9:00 PM.",
+      "source_id": "amenity.spa",
+      "source_label": "Wellness & spa information"
+    },
+    {
+      "id": "faq.restaurant",
+      "question": "Does the hotel have a restaurant?",
+      "answer": "Yes. The hotel has an all-day dining restaurant serving breakfast, lunch, and dinner.",
+      "source_id": "amenity.restaurant",
+      "source_label": "Dining information"
+    },
+    {
+      "id": "faq.airport-transfer",
+      "question": "Can you arrange an airport transfer?",
+      "answer": "Airport transfer assistance can be arranged subject to availability and applicable charges.",
+      "source_id": "service.airport-transfer",
+      "source_label": "Airport transfer information"
+    },
+    {
+      "id": "faq.identification",
+      "question": "What documents do I need for check-in?",
+      "answer": "Guests are required to provide valid government-issued identification during check-in.",
+      "source_id": "policy.identification",
+      "source_label": "Check-in requirements"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "inventory_rules": {
+    "courtyard-king": {
+      "inventory_count": 8,
+      "blocked_dates": [
+        "2026-10-20",
+        "2026-10-21",
+        "2026-11-05"
+      ]
+    },
+    "terrace-suite": {
+      "inventory_count": 5,
+      "blocked_dates": [
+        "2026-10-18",
+        "2026-10-19",
+        "2026-11-12"
+      ]
+    },
+    "garden-family-suite": {
+      "inventory_count": 4,
+      "blocked_dates": [
+        "2026-10-25",
+        "2026-10-26",
+        "2026-11-20"
+      ]
+    },
+    "orchid-signature-suite": {
+      "inventory_count": 2,
+      "blocked_dates": [
+        "2026-10-30",
+        "2026-10-31",
+        "2026-11-15"
+      ]
+    }
+  }
+}

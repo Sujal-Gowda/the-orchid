@@ -1,0 +1,96 @@
+{
+  "rooms": [
+    {
+      "id": "courtyard-king",
+      "name": "Courtyard King Room",
+      "description": "A refined king room overlooking the hotel's landscaped courtyard.",
+      "capacity": 2,
+      "bed_configuration": "1 King Bed",
+      "size_sqm": 32,
+      "view": "Courtyard",
+      "nightly_rate_inr": 9800,
+      "breakfast_included": false,
+      "highlights": [
+        "King bed",
+        "Courtyard view",
+        "Work desk",
+        "Complimentary Wi-Fi"
+      ],
+      "cancellation_summary": "Flexible cancellation depends on the selected rate plan.",
+      "image": "/rooms/courtyard-king.jpg",
+      "inventory_count": 8,
+      "source_id": "room.courtyard-king",
+      "source_label": "Courtyard King Room"
+    },
+    {
+      "id": "terrace-suite",
+      "name": "Terrace Suite",
+      "description": "A spacious suite with a private terrace designed for a relaxed city stay.",
+      "capacity": 3,
+      "bed_configuration": "1 King Bed + 1 Sofa Bed",
+      "size_sqm": 48,
+      "view": "City",
+      "nightly_rate_inr": 12900,
+      "breakfast_included": true,
+      "highlights": [
+        "Private terrace",
+        "King bed",
+        "Sofa bed",
+        "Breakfast included",
+        "Separate living area"
+      ],
+      "cancellation_summary": "Flexible cancellation depends on the selected rate plan.",
+      "image": "/rooms/terrace-suite.jpg",
+      "inventory_count": 5,
+      "source_id": "room.terrace-suite",
+      "source_label": "Terrace Suite"
+    },
+    {
+      "id": "garden-family-suite",
+      "name": "Garden Family Suite",
+      "description": "A generous family-oriented suite with additional sleeping capacity and a garden-facing outlook.",
+      "capacity": 4,
+      "bed_configuration": "1 King Bed + 2 Single Beds",
+      "size_sqm": 58,
+      "view": "Garden",
+      "nightly_rate_inr": 15600,
+      "breakfast_included": true,
+      "highlights": [
+        "Family-friendly layout",
+        "King bed",
+        "Two single beds",
+        "Garden view",
+        "Breakfast included"
+      ],
+      "cancellation_summary": "Flexible cancellation depends on the selected rate plan.",
+      "image": "/rooms/garden-family-suite.jpg",
+      "inventory_count": 4,
+      "source_id": "room.garden-family-suite",
+      "source_label": "Garden Family Suite"
+    },
+    {
+      "id": "orchid-signature-suite",
+      "name": "Orchid Signature Suite",
+      "description": "The hotel's signature suite offering a larger living space and a premium stay experience.",
+      "capacity": 4,
+      "bed_configuration": "1 King Bed + 2 Single Beds",
+      "size_sqm": 72,
+      "view": "Panoramic City",
+      "nightly_rate_inr": 21900,
+      "breakfast_included": true,
+      "highlights": [
+        "Panoramic city view",
+        "Large living area",
+        "King bed",
+        "Two single beds",
+        "Breakfast included",
+        "Premium suite amenities"
+      ],
+      "cancellation_summary": "Cancellation depends on the selected rate plan.",
+      "image": "/rooms/orchid-signature-suite.jpg",
+      "inventory_count": 2,
+      "source_id": "room.orchid-signature-suite",
+      "source_label": "Orchid Signature Suite"
+    }
+  ]
+}
