@@ -95,9 +95,14 @@ class RoomResult(BaseModel):
     id: str
     name: str
     capacity: int
+    bed: str
+    size_sqm: int
+    view: str
     nightly_rate_inr: int
     stay_total_inr: int
+    breakfast_included: bool
     highlights: list[str]
+    image: str
     available: bool
 
 

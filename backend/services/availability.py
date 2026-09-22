@@ -119,9 +119,14 @@ def check_availability(
                 id=room["id"],
                 name=room["name"],
                 capacity=room["capacity"],
+                bed=room["bed"],
+                size_sqm=room["size_sqm"],
+                view=room["view"],
                 nightly_rate_inr=nightly_rate,
                 stay_total_inr=stay_total,
+                breakfast_included=room["breakfast_included"],
                 highlights=room["highlights"],
+                image=room["image"],
                 available=True,
             )
         )
