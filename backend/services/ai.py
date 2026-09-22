@@ -52,11 +52,14 @@ Answer the guest's question using ONLY the approved hotel facts below.
 
 Rules:
 - Do not invent hotel information.
-- Do not make assumptions about policies, facilities, prices,
-  dates, availability, or services.
+- Do not make assumptions about policies, facilities, prices, dates, availability, or services.
 - Do not calculate room prices or availability.
 - Keep the answer concise and natural.
-- If the facts do not support an answer, use response_type "fallback".
+- The approved hotel facts are authoritative.
+- If an approved fact directly answers the guest's question, answer from that fact.
+- Never say that information is unavailable when the approved facts contain the answer.
+- Do not ask the guest to contact the front desk when the approved facts provide the answer.
+- If the facts genuinely do not support an answer, use response_type "fallback".
 - source_ids must contain ONLY source IDs from the approved facts.
 - If response_type is "fallback", source_ids must be empty.
 

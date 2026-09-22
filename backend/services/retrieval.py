@@ -28,10 +28,6 @@ def load_inventory() -> dict[str, Any]:
 
 
 def _query_terms(query: str) -> set[str]:
-    """
-    Normalize a guest question into useful search terms.
-    """
-
     stop_words = {
         "what",
         "is",
@@ -61,7 +57,7 @@ def _query_terms(query: str) -> set[str]:
         "that",
         "me",
         "we",
-        "with"
+        "with",
     }
 
     words = {
@@ -78,22 +74,10 @@ def _query_terms(query: str) -> set[str]:
 
 def _matches(query_terms: set[str], text: str) -> bool:
     searchable_text = text.lower()
-
-    return any(
-        term in searchable_text
-        for term in query_terms
-    )
+    return any(term in searchable_text for term in query_terms)
 
 
 def retrieve_hotel_facts(query: str) -> list[dict[str, str]]:
-    """
-    Retrieve approved hotel facts relevant to the guest query.
-
-    Retrieval is deterministic in v1.
-    The LLM will receive retrieved facts rather than
-    the complete hotel dataset.
-    """
-
     query_terms = _query_terms(query)
 
     if not query_terms:
@@ -102,10 +86,75 @@ def retrieve_hotel_facts(query: str) -> list[dict[str, str]]:
     hotel_data = load_hotel_data()
     results: list[dict[str, str]] = []
 
-    # -------------------------
-    # FAQs
-    # -------------------------
+    # ---------------------------------------------------------
+    # 1. Structured dining information
+    # ---------------------------------------------------------
+    # Dining contains specific information such as:
+    # breakfast hours, location, availability and inclusion.
+    #
+    # This is checked before generic amenities so that a question
+    # such as "What time is breakfast?" gets the specific
+    # breakfast hours rather than only restaurant opening hours.
+    # ---------------------------------------------------------
+    dining = hotel_data.get("dining", {})
 
+    if isinstance(dining, dict):
+        for meal_name, meal in dining.items():
+            if not isinstance(meal, dict):
+                continue
+
+            searchable_text = " ".join(
+                [
+                    meal_name,
+                    meal.get("location", ""),
+                    meal.get("hours", ""),
+                    meal.get("description", ""),
+                    meal.get("inclusion_note", ""),
+                ]
+            )
+
+            if _matches(query_terms, searchable_text):
+                content_parts = []
+
+                if meal.get("available") is not None:
+                    availability = (
+                        "Available"
+                        if meal["available"]
+                        else "Not available"
+                    )
+                    content_parts.append(availability)
+
+                if meal.get("location"):
+                    content_parts.append(
+                        f"Location: {meal['location']}."
+                    )
+
+                if meal.get("hours"):
+                    content_parts.append(
+                        f"Hours: {meal['hours']}."
+                    )
+
+                if meal.get("description"):
+                    content_parts.append(
+                        meal["description"]
+                    )
+
+                if meal.get("inclusion_note"):
+                    content_parts.append(
+                        meal["inclusion_note"]
+                    )
+
+                results.append(
+                    {
+                        "source_id": meal["source_id"],
+                        "source_label": meal["source_label"],
+                        "content": " ".join(content_parts),
+                    }
+                )
+
+    # ---------------------------------------------------------
+    # 2. FAQs
+    # ---------------------------------------------------------
     for faq in hotel_data.get("faqs", []):
         searchable_text = (
             f"{faq['question']} "
@@ -121,10 +170,9 @@ def retrieve_hotel_facts(query: str) -> list[dict[str, str]]:
                 }
             )
 
-    # -------------------------
-    # Amenities
-    # -------------------------
-
+    # ---------------------------------------------------------
+    # 3. Amenities
+    # ---------------------------------------------------------
     for amenity in hotel_data.get("amenities", []):
         searchable_text = (
             f"{amenity['name']} "
@@ -141,10 +189,9 @@ def retrieve_hotel_facts(query: str) -> list[dict[str, str]]:
                 }
             )
 
-    # -------------------------
-    # Policies
-    # -------------------------
-
+    # ---------------------------------------------------------
+    # 4. Policies
+    # ---------------------------------------------------------
     for policy in hotel_data.get("policies", {}).values():
         searchable_text = policy["summary"]
 
@@ -157,10 +204,9 @@ def retrieve_hotel_facts(query: str) -> list[dict[str, str]]:
                 }
             )
 
-    # -------------------------
-    # Remove duplicates
-    # -------------------------
-
+    # ---------------------------------------------------------
+    # Remove duplicate sources while preserving priority order
+    # ---------------------------------------------------------
     unique_results: list[dict[str, str]] = []
     seen: set[str] = set()
 
