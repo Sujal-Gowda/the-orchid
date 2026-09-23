@@ -1,16 +1,43 @@
-# The Orchid — Simp’AI’otel
+# 🌿 The Orchid — Simp’AI’otel
 
-A premium, AI-powered hotel concierge for **The Orchid**, built as a full-stack interview project.
+> **A premium, AI-powered hotel concierge for The Orchid.**  
+> A full-stack AI Engineer interview project combining grounded AI, deterministic hotel operations, and a polished guest experience.
 
-**Live Link:** https://the-orchid-three.vercel.app  
-**Demo Video:** https://youtu.be/gaF2gV5fj_k   
-**Backend API:** https://the-orchid-api.onrender.com   
-**Swagger Docs:** https://the-orchid-api.onrender.com/docs  
-**GitHub:** https://github.com/Sujal-Gowda/the-orchid
+<p align="center">
+  <a href="https://the-orchid-three.vercel.app">
+    <img src="https://img.shields.io/badge/Live%20App-The%20Orchid-1f2d2b?style=for-the-badge" alt="Live App">
+  </a>
+  <a href="https://youtu.be/gaF2gV5fj_k">
+    <img src="https://img.shields.io/badge/▶%20Demo%20Video-YouTube-c4302b?style=for-the-badge" alt="Demo Video">
+  </a>
+  <a href="https://the-orchid-api.onrender.com/docs">
+    <img src="https://img.shields.io/badge/API-Swagger-85a3a3?style=for-the-badge" alt="Swagger API">
+  </a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-Frontend-000000?logo=next.js&logoColor=white" alt="Next.js">
+  <img src="https://img.shields.io/badge/FastAPI-Backend-009688?logo=fastapi&logoColor=white" alt="FastAPI">
+  <img src="https://img.shields.io/badge/Google%20Gemini-AI-4285F4?logo=google&logoColor=white" alt="Google Gemini">
+  <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/Vercel-Deployed-000000?logo=vercel&logoColor=white" alt="Vercel">
+  <img src="https://img.shields.io/badge/Render-Deployed-46E3B7?logo=render&logoColor=111111" alt="Render">
+</p>
 
 ---
 
-## 1. Project Overview
+**Live Link:** https://the-orchid-three.vercel.app  
+**Demo Video:** https://youtu.be/gaF2gV5fj_k  
+**Backend API:** https://the-orchid-api.onrender.com  
+**Swagger Docs:** https://the-orchid-api.onrender.com/docs  
+**GitHub:** https://github.com/Sujal-Gowda/the-orchid
+
+> 📸 Project screenshots are available in [`docs/screenshots`](docs/screenshots/).
+
+---
+
+## 🏨 1. Project Overview
 
 Simp’AI’otel is a conversational hotel concierge designed for The Orchid.
 
@@ -28,11 +55,18 @@ The guest journey is:
 
 The project deliberately keeps AI responsibilities separate from deterministic hotel business logic.
 
+### 🎯 Core Design Principle
+
+> **Use AI where language understanding helps; use deterministic code where correctness matters.**
+
+This keeps conversational responses flexible while making availability, capacity, dates, inventory and pricing predictable and testable.
+
+
 ---
 
-## 2. Features
+## ✨ 2. Features
 
-### Guest Experience
+### 🧑‍💼 Guest Experience
 
 - Premium responsive hotel landing page.
 - Simp’AI’otel conversational interface.
@@ -46,7 +80,7 @@ The project deliberately keeps AI responsibilities separate from deterministic h
 - No-availability handling.
 - Responsive desktop, tablet and mobile layouts.
 
-### AI / Backend
+### 🤖 AI / Backend
 
 - FastAPI backend.
 - Pydantic request/response validation.
@@ -61,7 +95,7 @@ The project deliberately keeps AI responsibilities separate from deterministic h
 - Health endpoint.
 - Swagger/OpenAPI documentation.
 
-### Engineering
+### ⚙️ Engineering
 
 - Frontend and backend separated.
 - Gemini credentials never exposed to the browser.
@@ -75,7 +109,7 @@ The project deliberately keeps AI responsibilities separate from deterministic h
 
 ---
 
-## 3. Architecture
+## 🏗️ 3. Architecture
 
 ```text
                          ┌──────────────────────┐
@@ -116,7 +150,7 @@ The project deliberately keeps AI responsibilities separate from deterministic h
                          Grounded hotel data
 ```
 
-### Data flow
+### 🔄 Data Flow
 
 For a hotel question:
 
@@ -162,9 +196,24 @@ The LLM is **not** responsible for room availability, capacity, dates or price c
 
 ---
 
-## 4. Technology Stack
+## 💡 Why This Architecture?
 
-### Frontend
+The project intentionally separates **conversation** from **hotel operations**:
+
+- 🧠 **Gemini** handles natural-language generation.
+- 📚 **Curated JSON retrieval** keeps answers grounded in known hotel information.
+- 🧮 **Deterministic Python logic** handles availability, dates, capacity, inventory and pricing.
+- 🔁 **Provider failover** gives the AI layer a second execution path.
+- 🔒 **Backend-only secrets** keep Gemini credentials out of the browser.
+- 📦 **Stateless services** keep the deployment simple and portable.
+
+This makes the system easier to test, explain and evolve without introducing unnecessary infrastructure.
+
+---
+
+## 🧰 4. Technology Stack
+
+### 🖥️ Frontend
 
 - Next.js
 - React
@@ -174,7 +223,7 @@ The LLM is **not** responsible for room availability, capacity, dates or price c
 - Lucide icons
 - React Hook Form / validation patterns
 
-### Backend
+### 🔌 Backend
 
 - Python
 - FastAPI
@@ -182,18 +231,18 @@ The LLM is **not** responsible for room availability, capacity, dates or price c
 - Uvicorn
 - python-dotenv
 
-### AI
+### 🧠 AI
 
 - Google Gemini API
 - `gemini-3.1-flash-lite`
 - Two Gemini API keys/projects for provider failover
 
-### Data
+### 🗂️ Data
 
 - Curated JSON hotel knowledge base
 - Deterministic room inventory/rules
 
-### Testing
+### 🧪 Testing
 
 - pytest
 - FastAPI TestClient / HTTPX
@@ -201,7 +250,7 @@ The LLM is **not** responsible for room availability, capacity, dates or price c
 - Next.js production build
 - Manual end-to-end evaluation
 
-### Deployment
+### 🚀 Deployment
 
 - Vercel — frontend
 - Render — backend
@@ -209,7 +258,7 @@ The LLM is **not** responsible for room availability, capacity, dates or price c
 
 ---
 
-## 5. Repository Structure
+## 📁 5. Repository Structure
 
 ```text
 the-orchid/
@@ -244,7 +293,7 @@ the-orchid/
 
 ---
 
-## 6. Prerequisites
+## 📋 6. Prerequisites
 
 Recommended development environment:
 
@@ -258,7 +307,7 @@ The project was developed and tested locally with Python 3.11.9 and Node.js 24.1
 
 ---
 
-## 7. Local Setup
+## 🛠️ 7. Local Setup
 
 ### Clone
 
@@ -267,7 +316,7 @@ git clone https://github.com/Sujal-Gowda/the-orchid.git
 cd the-orchid
 ```
 
-### Backend
+### 🔌 Backend
 
 Windows PowerShell:
 
@@ -319,7 +368,7 @@ Health:
 http://127.0.0.1:8000/health
 ```
 
-### Frontend
+### 🖥️ Frontend
 
 Open a second terminal:
 
@@ -348,7 +397,7 @@ http://localhost:3000
 
 ---
 
-## 8. API Reference
+## 🔌 8. API Reference
 
 ### Health
 
@@ -464,7 +513,7 @@ Actual room results depend on the requested dates and guest count.
 
 ---
 
-## 9. Deterministic Availability
+## 🧮 9. Deterministic Availability
 
 Availability is deliberately independent of the LLM.
 
@@ -490,7 +539,7 @@ This prevents an LLM from inventing availability or prices.
 
 ---
 
-## 10. Hotel Knowledge Base
+## 📚 10. Hotel Knowledge Base
 
 The controlled hotel dataset contains information such as:
 
@@ -517,7 +566,7 @@ The assistant should not invent hotel facts that are not present in the controll
 
 ---
 
-## 11. AI Architecture
+## 🧠 11. AI Architecture
 
 ```text
 User question
@@ -547,7 +596,7 @@ AI is used for natural-language generation, while deterministic application code
 
 ---
 
-## 12. Product / UX Decisions
+## 🎨 12. Product / UX Decisions
 
 ### Premium, simple visual language
 
@@ -571,9 +620,9 @@ Room cards expose capacity, bed, size, view, breakfast, highlights, nightly rate
 
 ---
 
-## 13. Engineering Decisions
+## ⚙️ 13. Engineering Decisions
 
-### Backend-only API keys
+### 🔌 Backend-only API keys
 
 Gemini credentials are never sent to the browser.
 
@@ -601,7 +650,7 @@ The project intentionally avoids unnecessary infrastructure such as microservice
 
 ---
 
-## 14. Testing and Evaluation
+## 🧪 14. Testing and Evaluation
 
 Latest automated backend test result:
 
@@ -651,7 +700,7 @@ The remaining lint warning is related to the standard HTML `<img>` element in th
 | Production frontend | Passed |
 | Production backend | Passed |
 
-### Production note
+### ⚠️ Production note
 
 The deployed application currently has a known issue with the `/api/chat` AI response path in production. The deployed infrastructure and deterministic availability flow are working.
 
@@ -659,9 +708,9 @@ The issue is documented rather than hidden and is planned for post-deployment de
 
 ---
 
-## 15. Deployment
+## 🚀 15. Deployment
 
-### Frontend
+### 🖥️ Frontend
 
 Hosted on Vercel:
 
@@ -675,7 +724,7 @@ Production environment variable:
 NEXT_PUBLIC_API_BASE_URL=https://the-orchid-api.onrender.com
 ```
 
-### Backend
+### 🔌 Backend
 
 Hosted on Render:
 
@@ -701,7 +750,7 @@ FRONTEND_ORIGIN=https://the-orchid-three.vercel.app
 
 ---
 
-## 16. Security
+## 🔐 16. Security
 
 - Gemini keys are stored only in backend environment variables.
 - Gemini keys are not included in the frontend deployment.
@@ -714,7 +763,7 @@ FRONTEND_ORIGIN=https://the-orchid-three.vercel.app
 ---
 
 
-## 17. Out of Scope
+## 🚫 17. Out of Scope
 
 The current version does not implement:
 
@@ -735,7 +784,7 @@ The current version does not implement:
 
 ---
 
-## 18. Future Improvements
+## 🔭 18. Future Improvements
 
 1. Resolve and improve the production `/api/chat` issue.
 2. Add stronger retrieval aliases/semantic retrieval.
@@ -751,7 +800,7 @@ The current version does not implement:
 
 ---
 
-## 19. Quick Start
+## ⚡ 19. Quick Start
 
 ```bash
 git clone https://github.com/Sujal-Gowda/the-orchid.git
@@ -784,7 +833,7 @@ http://localhost:3000
 ---
 
 
-## 20. Project Links
+## 🔗 20. Project Links
 
 **Repository:**  
 https://github.com/Sujal-Gowda/the-orchid
@@ -803,10 +852,13 @@ https://the-orchid-api.onrender.com/docs
 
 ---
 
-## Project Status
+## 📌 Project Status
 
 **Deployed and submission-ready.**
 
 The current focus is the deployed guest experience. The production `/api/chat` issue is a known follow-up engineering task; the deployment, frontend, backend infrastructure and deterministic availability experience are live.
 
 **The Orchid × Simp’AI’otel**
+
+> *A focused demonstration of grounded AI, deterministic business logic, full-stack integration, and premium guest experience design.*
+
