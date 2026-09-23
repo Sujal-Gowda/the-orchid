@@ -108,134 +108,143 @@ export default function AvailabilityForm({
     }
   }
 
-  function handleResultsClose() {
+  function closeResults() {
     setResultsOpen(false);
+    onClose();
   }
 
   return (
     <>
-      <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/20 p-4 backdrop-blur-sm sm:items-center">
-        <div className="w-full max-w-xl rounded-[2rem] border border-[var(--orchid-border)] bg-[var(--orchid-card)] p-6 shadow-2xl sm:p-8">
-          <div className="mb-8">
-            <p className="text-xs uppercase tracking-[0.25em] text-[var(--orchid-muted)]">
-              The Orchid
-            </p>
+      {!resultsOpen && (
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/20 p-4 backdrop-blur-sm sm:items-center">
+          <div className="w-full max-w-xl rounded-[2rem] border border-[var(--orchid-border)] bg-[var(--orchid-card)] p-6 shadow-2xl sm:p-8">
+            <div className="mb-8">
+              <p className="text-xs uppercase tracking-[0.25em] text-[var(--orchid-muted)]">
+                The Orchid
+              </p>
 
-            <h2 className="mt-2 text-3xl font-light">
-              Find your stay
-            </h2>
+              <h2 className="mt-2 text-3xl font-light">
+                Find your stay
+              </h2>
 
-            <p className="mt-3 text-sm leading-6 text-[var(--orchid-muted)]">
-              Tell us when you&apos;re staying and we&apos;ll show you
-              the available rooms.
-            </p>
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="grid gap-5 sm:grid-cols-2">
-              <label className="block">
-                <span className="mb-2 flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-[var(--orchid-muted)]">
-                  <CalendarDays size={15} />
-                  Check-in
-                </span>
-
-                <input
-                  type="date"
-                  value={checkIn}
-                  onChange={(event) =>
-                    setCheckIn(event.target.value)
-                  }
-                  required
-                  disabled={loading}
-                  className="w-full rounded-xl border border-[var(--orchid-border)] bg-white px-4 py-3 text-sm outline-none transition focus:border-[var(--orchid-gold)] disabled:opacity-50"
-                />
-              </label>
-
-              <label className="block">
-                <span className="mb-2 flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-[var(--orchid-muted)]">
-                  <CalendarDays size={15} />
-                  Check-out
-                </span>
-
-                <input
-                  type="date"
-                  value={checkOut}
-                  onChange={(event) =>
-                    setCheckOut(event.target.value)
-                  }
-                  required
-                  disabled={loading}
-                  className="w-full rounded-xl border border-[var(--orchid-border)] bg-white px-4 py-3 text-sm outline-none transition focus:border-[var(--orchid-gold)] disabled:opacity-50"
-                />
-              </label>
+              <p className="mt-3 text-sm leading-6 text-[var(--orchid-muted)]">
+                Tell us when you&apos;re staying and we&apos;ll show you
+                the available rooms.
+              </p>
             </div>
 
-            <label className="block">
-              <span className="mb-2 flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-[var(--orchid-muted)]">
-                <Users size={15} />
-                Guests
-              </span>
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <label className="block">
+                  <span className="mb-2 flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-[var(--orchid-muted)]">
+                    <CalendarDays size={15} />
+                    Check-in
+                  </span>
 
-              <select
-                value={guests}
-                onChange={(event) => setGuests(event.target.value)}
-                disabled={loading}
-                className="w-full rounded-xl border border-[var(--orchid-border)] bg-white px-4 py-3 text-sm outline-none transition focus:border-[var(--orchid-gold)] disabled:opacity-50"
-              >
-                {Array.from(
-                  { length: 10 },
-                  (_, index) => index + 1,
-                ).map((number) => (
-                  <option key={number} value={number}>
-                    {number} {number === 1 ? "guest" : "guests"}
-                  </option>
-                ))}
-              </select>
-            </label>
+                  <input
+                    type="date"
+                    value={checkIn}
+                    onChange={(event) =>
+                      setCheckIn(event.target.value)
+                    }
+                    required
+                    disabled={loading}
+                    className="w-full rounded-xl border border-[var(--orchid-border)] bg-white px-4 py-3 text-sm outline-none transition focus:border-[var(--orchid-gold)] disabled:opacity-50"
+                  />
+                </label>
 
-            {error && (
-              <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm leading-6 text-red-700">
-                {error}
+                <label className="block">
+                  <span className="mb-2 flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-[var(--orchid-muted)]">
+                    <CalendarDays size={15} />
+                    Check-out
+                  </span>
+
+                  <input
+                    type="date"
+                    value={checkOut}
+                    onChange={(event) =>
+                      setCheckOut(event.target.value)
+                    }
+                    required
+                    disabled={loading}
+                    className="w-full rounded-xl border border-[var(--orchid-border)] bg-white px-4 py-3 text-sm outline-none transition focus:border-[var(--orchid-gold)] disabled:opacity-50"
+                  />
+                </label>
               </div>
-            )}
 
-            <div className="flex flex-col-reverse gap-3 pt-3 sm:flex-row sm:justify-end">
-              <button
-                type="button"
-                onClick={onClose}
-                disabled={loading}
-                className="rounded-full border border-[var(--orchid-border)] px-6 py-3 text-sm transition-colors hover:bg-white disabled:opacity-50"
-              >
-                Close
-              </button>
+              <label className="block">
+                <span className="mb-2 flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-[var(--orchid-muted)]">
+                  <Users size={15} />
+                  Guests
+                </span>
 
-              <button
-                type="submit"
-                disabled={loading}
-                className="flex items-center justify-center gap-2 rounded-full bg-[var(--orchid-deep)] px-6 py-3 text-sm font-medium text-white transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                {loading ? (
-                  <>
-                    <Loader2 size={16} className="animate-spin" />
-                    Checking...
-                  </>
-                ) : (
-                  <>
-                    Find rooms
-                    <ArrowRight size={16} />
-                  </>
-                )}
-              </button>
-            </div>
-          </form>
+                <select
+                  value={guests}
+                  onChange={(event) =>
+                    setGuests(event.target.value)
+                  }
+                  disabled={loading}
+                  className="w-full rounded-xl border border-[var(--orchid-border)] bg-white px-4 py-3 text-sm outline-none transition focus:border-[var(--orchid-gold)] disabled:opacity-50"
+                >
+                  {Array.from(
+                    { length: 10 },
+                    (_, index) => index + 1,
+                  ).map((number) => (
+                    <option key={number} value={number}>
+                      {number}{" "}
+                      {number === 1 ? "guest" : "guests"}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              {error && (
+                <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm leading-6 text-red-700">
+                  {error}
+                </div>
+              )}
+
+              <div className="flex flex-col-reverse gap-3 pt-3 sm:flex-row sm:justify-end">
+                <button
+                  type="button"
+                  onClick={onClose}
+                  disabled={loading}
+                  className="rounded-full border border-[var(--orchid-border)] px-6 py-3 text-sm transition-colors hover:bg-white disabled:opacity-50"
+                >
+                  Close
+                </button>
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="flex items-center justify-center gap-2 rounded-full bg-[var(--orchid-deep)] px-6 py-3 text-sm font-medium text-white transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {loading ? (
+                    <>
+                      <Loader2
+                        size={16}
+                        className="animate-spin"
+                      />
+                      Checking...
+                    </>
+                  ) : (
+                    <>
+                      Find rooms
+                      <ArrowRight size={16} />
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
+      )}
 
-      {criteria && (
+      {criteria && resultsOpen && (
         <RoomResults
           criteria={criteria}
           rooms={rooms}
-          onClose={handleResultsClose}
+          onClose={closeResults}
         />
       )}
     </>
