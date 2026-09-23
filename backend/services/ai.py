@@ -18,14 +18,10 @@ def generate_grounded_answer(
     facts: list[dict[str, str]],
     context: list[dict[str, str]] | None = None,
 ) -> tuple[GroundedAIResponse, str]:
-
     if not facts:
         return (
             GroundedAIResponse(
-                message=(
-                    "I don't have enough approved information "
-                    "to answer that reliably."
-                ),
+                message="I don't have enough approved information to answer that reliably.",
                 source_ids=[],
                 response_type="fallback",
             ),
@@ -73,12 +69,25 @@ Guest question:
 {question}
 """
 
-    response, provider = generate_structured_with_fallback(
-        prompt,
-        GroundedAIResponse,
-    )
+    try:
+        response, provider = generate_structured_with_fallback(
+            prompt,
+            GroundedAIResponse,
+        )
+    except RuntimeError:
+        return (
+            GroundedAIResponse(
+                message="I’m having trouble generating a response right now. I can still help with The Orchid's basic hotel information and availability.",
+                source_ids=[],
+                response_type="fallback",
+            ),
+            "deterministic",
+        )
 
-    valid_source_ids = {fact["source_id"] for fact in facts}
+    valid_source_ids = {
+        fact["source_id"]
+        for fact in facts
+    }
 
     invalid_source_ids = [
         source_id
