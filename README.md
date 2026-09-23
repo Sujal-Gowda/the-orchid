@@ -4,8 +4,7 @@ A premium, AI-powered hotel concierge for **The Orchid**, built as a full-stack 
 
 **Live Link:** https://the-orchid-three.vercel.app  
 **Demo Video:** https://youtu.be/gaF2gV5fj_k
-**Backend API:** https://the-orchid-api.onrender.com  
-**Swagger Docs:** https://the-orchid-api.onrender.com/docs  
+**Backend API:** https://the-orchid-api.onrender.com 
 **GitHub:** https://github.com/Sujal-Gowda/the-orchid
 
 ---
