@@ -10,13 +10,17 @@ type Message = {
   sources?: { id: string; label: string }[];
 };
 
+type ConciergeChatProps = {
+  open: boolean;
+  onClose: () => void;
+  onAvailabilityRequest: () => void;
+};
+
 export default function ConciergeChat({
   open,
   onClose,
-}: {
-  open: boolean;
-  onClose: () => void;
-}) {
+  onAvailabilityRequest,
+}: ConciergeChatProps) {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -37,13 +41,6 @@ export default function ConciergeChat({
       content: trimmedMessage,
     };
 
-    /*
-     * Keep the conversation locally so follow-up questions
-     * can be understood by the backend.
-     *
-     * We only send the previous conversation, not the newly
-     * added user message twice.
-     */
     const previousContext = messages.slice(-8);
 
     setMessages((current) => [...current, userMessage]);
@@ -79,6 +76,10 @@ export default function ConciergeChat({
           sources: data.sources ?? [],
         },
       ]);
+
+      if (data.type === "availability_form") {
+        onAvailabilityRequest();
+      }
     } catch (error) {
       console.error("Simp’AI’otel request failed:", error);
 

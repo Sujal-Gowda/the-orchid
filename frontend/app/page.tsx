@@ -8,6 +8,10 @@ export default function Home() {
   const [chatOpen, setChatOpen] = useState(false);
   const [availabilityOpen, setAvailabilityOpen] = useState(false);
 
+  function openAvailability() {
+    setAvailabilityOpen(true);
+  }
+
   return (
     <>
       <main className="min-h-screen bg-[var(--orchid-cream)] text-[var(--foreground)]">
@@ -59,7 +63,7 @@ export default function Home() {
                   </button>
 
                   <button
-                    onClick={() => setAvailabilityOpen(true)}
+                    onClick={openAvailability}
                     className="rounded-full border border-[var(--orchid-border)] bg-white/50 px-7 py-4 text-sm font-medium backdrop-blur transition-colors hover:bg-white"
                   >
                     Check availability
@@ -120,6 +124,7 @@ export default function Home() {
       <ConciergeChat
         open={chatOpen}
         onClose={() => setChatOpen(false)}
+        onAvailabilityRequest={openAvailability}
       />
 
       <AvailabilityForm
