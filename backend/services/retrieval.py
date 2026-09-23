@@ -58,6 +58,8 @@ def _query_terms(query: str) -> set[str]:
         "me",
         "we",
         "with",
+        "our",
+        "us",
     }
 
     words = {
@@ -87,14 +89,57 @@ def retrieve_hotel_facts(query: str) -> list[dict[str, str]]:
     results: list[dict[str, str]] = []
 
     # ---------------------------------------------------------
-    # 1. Structured dining information
+    # 1. Room information
     # ---------------------------------------------------------
-    # Dining contains specific information such as:
-    # breakfast hours, location, availability and inclusion.
+    # Room descriptions are retrieved for general questions
+    # about room types and room features.
     #
-    # This is checked before generic amenities so that a question
-    # such as "What time is breakfast?" gets the specific
-    # breakfast hours rather than only restaurant opening hours.
+    # Availability and pricing are intentionally NOT handled
+    # here. Those remain deterministic in availability.py.
+    # ---------------------------------------------------------
+    rooms = load_rooms()
+
+    room_query_terms = {
+        "room",
+        "rooms",
+        "suite",
+        "suites",
+        "bed",
+        "beds",
+        "view",
+        "size",
+        "family",
+        "terrace",
+        "courtyard",
+        "signature",
+    }
+
+    if query_terms & room_query_terms:
+        room_contents = []
+
+        for room in rooms:
+            room_contents.append(
+                (
+                    f"{room['name']}: "
+                    f"capacity {room['capacity']} guests; "
+                    f"{room['bed']}; "
+                    f"{room['size_sqm']} square metres; "
+                    f"{room['view']} view; "
+                    f"{'breakfast included' if room['breakfast_included'] else 'breakfast not included'}; "
+                    f"{', '.join(room['highlights'])}."
+                )
+            )
+
+        results.append(
+            {
+                "source_id": "rooms.accommodation",
+                "source_label": "Rooms & accommodation",
+                "content": " ".join(room_contents),
+            }
+        )
+
+    # ---------------------------------------------------------
+    # 2. Structured dining information
     # ---------------------------------------------------------
     dining = hotel_data.get("dining", {})
 
@@ -153,7 +198,7 @@ def retrieve_hotel_facts(query: str) -> list[dict[str, str]]:
                 )
 
     # ---------------------------------------------------------
-    # 2. FAQs
+    # 3. FAQs
     # ---------------------------------------------------------
     for faq in hotel_data.get("faqs", []):
         searchable_text = (
@@ -171,7 +216,7 @@ def retrieve_hotel_facts(query: str) -> list[dict[str, str]]:
             )
 
     # ---------------------------------------------------------
-    # 3. Amenities
+    # 4. Amenities
     # ---------------------------------------------------------
     for amenity in hotel_data.get("amenities", []):
         searchable_text = (
@@ -190,7 +235,7 @@ def retrieve_hotel_facts(query: str) -> list[dict[str, str]]:
             )
 
     # ---------------------------------------------------------
-    # 4. Policies
+    # 5. Policies
     # ---------------------------------------------------------
     for policy in hotel_data.get("policies", {}).values():
         searchable_text = policy["summary"]

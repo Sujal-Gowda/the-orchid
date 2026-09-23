@@ -9,14 +9,22 @@ from backend.services.retrieval import retrieve_hotel_facts
 AVAILABILITY_TERMS = {
     "available",
     "availability",
-    "room",
-    "rooms",
     "book",
     "booking",
-    "stay",
-    "staying",
     "reserve",
     "reservation",
+}
+
+STAY_TERMS = {
+    "stay",
+    "staying",
+    "night",
+    "nights",
+}
+
+ROOM_TERMS = {
+    "room",
+    "rooms",
 }
 
 HOTEL_SCOPE_TERMS = {
@@ -51,7 +59,33 @@ def _contains_term(message: str, terms: set[str]) -> bool:
 
 
 def _is_availability_request(message: str) -> bool:
-    return _contains_term(message, AVAILABILITY_TERMS)
+    text = message.lower()
+
+    # Explicit availability language.
+    if _contains_term(text, AVAILABILITY_TERMS):
+        return True
+
+    # A room/stay request combined with stay-related language.
+    has_room = _contains_term(text, ROOM_TERMS)
+    has_stay = _contains_term(text, STAY_TERMS)
+
+    if has_room and has_stay:
+        return True
+
+    # Common natural-language requests.
+    availability_phrases = {
+        "check availability",
+        "check available rooms",
+        "find a room",
+        "find rooms",
+        "looking for a room",
+        "need a room",
+        "want a room",
+        "looking to stay",
+        "want to stay",
+    }
+
+    return any(phrase in text for phrase in availability_phrases)
 
 
 def _is_hotel_question(message: str) -> bool:
@@ -59,21 +93,19 @@ def _is_hotel_question(message: str) -> bool:
 
 
 def handle_chat(message: str):
-    """
-    Deterministic chat handler used before LLM integration.
-
-    The LLM will later generate the final natural-language response,
-    but retrieval and availability intent remain controlled by the backend.
-    """
-
     if _is_availability_request(message):
         return AvailabilityFormResponse(
             type="availability_form",
             message=(
                 "I can help you check room availability. "
-                "Please provide your check-in date, check-out date, and number of guests."
+                "Please provide your check-in date, "
+                "check-out date, and number of guests."
             ),
-            missing_fields=["check_in", "check_out", "guests"],
+            missing_fields=[
+                "check_in",
+                "check_out",
+                "guests",
+            ],
         )
 
     facts = retrieve_hotel_facts(message)
@@ -87,7 +119,9 @@ def handle_chat(message: str):
             for fact in facts
         ]
 
-        answer = " ".join(fact["content"] for fact in facts)
+        answer = " ".join(
+            fact["content"] for fact in facts
+        )
 
         return AnswerResponse(
             type="answer",
@@ -101,9 +135,10 @@ def handle_chat(message: str):
         return FallbackResponse(
             type="fallback",
             message=(
-                "I don't have a reliable answer to that from The Orchid's "
-                "approved hotel information. I can help with rooms, amenities, "
-                "dining, policies, and availability."
+                "I don't have a reliable answer to that from "
+                "The Orchid's approved hotel information. "
+                "I can help with rooms, amenities, dining, "
+                "policies, and availability."
             ),
         )
 
@@ -111,7 +146,7 @@ def handle_chat(message: str):
         type="fallback",
         message=(
             "I'm Simp’AI’otel, The Orchid's guest assistant. "
-            "I can help with hotel information, rooms, amenities, policies, "
-            "and availability."
+            "I can help with hotel information, rooms, amenities, "
+            "policies, and availability."
         ),
     )
