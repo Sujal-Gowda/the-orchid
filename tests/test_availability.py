@@ -111,3 +111,14 @@ def test_no_single_room_for_too_many_guests():
     )
 
     assert result.rooms == []
+
+def test_stay_longer_than_maximum_is_rejected():
+    check_in = future_date(30)
+    check_out = future_date(61)
+
+    with pytest.raises(ValueError):
+        check_availability(
+            check_in=check_in,
+            check_out=check_out,
+            guests=2,
+        )
