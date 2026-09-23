@@ -49,14 +49,20 @@ def chat(request: ChatRequest):
             ],
         }
 
-    context_text = " ".join(
-        item.content
-        for item in request.context[-6:]
-    )
+    # Retrieve facts primarily from the current question.
+    # This prevents older conversation turns from crowding out
+    # the facts needed for the user's latest request.
+    facts = retrieve_hotel_facts(message)
 
-    retrieval_query = f"{context_text} {message}".strip()
-
-    facts = retrieve_hotel_facts(retrieval_query)
+    # For short follow-up questions, use recent context only
+    # when the current message alone does not retrieve anything.
+    if not facts and request.context:
+        context_text = " ".join(
+            item.content for item in request.context[-6:]
+        )
+        facts = retrieve_hotel_facts(
+            f"{context_text} {message}".strip()
+        )
 
     if not facts:
         if _is_hotel_question(message):
