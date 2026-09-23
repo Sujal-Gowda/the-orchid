@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import ConciergeChat from "@/components/ConciergeChat";
+import AvailabilityForm from "@/components/AvailabilityForm";
 
 export default function Home() {
   const [chatOpen, setChatOpen] = useState(false);
+  const [availabilityOpen, setAvailabilityOpen] = useState(false);
 
   return (
     <>
@@ -18,6 +20,7 @@ export default function Home() {
                 <p className="text-xs uppercase tracking-[0.35em] text-[var(--orchid-muted)]">
                   The Orchid
                 </p>
+
                 <p className="mt-1 text-sm text-[var(--orchid-muted)]">
                   Bengaluru
                 </p>
@@ -56,7 +59,7 @@ export default function Home() {
                   </button>
 
                   <button
-                    onClick={() => setChatOpen(true)}
+                    onClick={() => setAvailabilityOpen(true)}
                     className="rounded-full border border-[var(--orchid-border)] bg-white/50 px-7 py-4 text-sm font-medium backdrop-blur transition-colors hover:bg-white"
                   >
                     Check availability
@@ -117,6 +120,11 @@ export default function Home() {
       <ConciergeChat
         open={chatOpen}
         onClose={() => setChatOpen(false)}
+      />
+
+      <AvailabilityForm
+        open={availabilityOpen}
+        onClose={() => setAvailabilityOpen(false)}
       />
     </>
   );
