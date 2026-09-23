@@ -2,7 +2,8 @@
 
 A premium, AI-powered hotel concierge for **The Orchid**, built as a full-stack interview project.
 
-**Live Demo:** https://the-orchid-three.vercel.app  
+**Live Link:** https://the-orchid-three.vercel.app  
+**Demo Video:** https://youtu.be/gaF2gV5fj_k
 **Backend API:** https://the-orchid-api.onrender.com  
 **Swagger Docs:** https://the-orchid-api.onrender.com/docs  
 **GitHub:** https://github.com/Sujal-Gowda/the-orchid
@@ -712,27 +713,8 @@ FRONTEND_ORIGIN=https://the-orchid-three.vercel.app
 
 ---
 
-## 17. AI Tools Used During Development
 
-### ChatGPT
-
-Used for architecture planning, implementation assistance, debugging, test design, deployment troubleshooting, UX iteration and documentation.
-
-### Google Gemini API
-
-Used as the runtime model powering Simp’AI’otel.
-
-Configured model:
-
-```text
-gemini-3.1-flash-lite
-```
-
-Two Gemini configurations are used for provider failover.
-
----
-
-## 18. Out of Scope
+## 17. Out of Scope
 
 The current version does not implement:
 
@@ -753,7 +735,7 @@ The current version does not implement:
 
 ---
 
-## 19. Future Improvements
+## 18. Future Improvements
 
 1. Resolve and improve the production `/api/chat` issue.
 2. Add stronger retrieval aliases/semantic retrieval.
@@ -769,7 +751,7 @@ The current version does not implement:
 
 ---
 
-## 20. Quick Start
+## 19. Quick Start
 
 ```bash
 git clone https://github.com/Sujal-Gowda/the-orchid.git
@@ -801,36 +783,17 @@ http://localhost:3000
 
 ---
 
-## 21. Submission Deliverables
 
-| Deliverable | Status |
-|---|---|
-| GitHub repository | Complete |
-| Frontend source code | Complete |
-| Backend source code | Complete |
-| README | Complete |
-| Local setup instructions | Complete |
-| Architecture explanation | Complete |
-| Working local frontend | Complete |
-| Backend API examples | Complete |
-| Product / UX decisions | Complete |
-| Engineering decisions | Complete |
-| AI decisions | Complete |
-| Evaluation scenarios | Complete |
-| Observed results | Complete |
-| AI tools disclosure | Complete |
-| Deployed frontend | Complete |
-| Deployed backend | Complete |
-
----
-
-## 22. Project Links
+## 20. Project Links
 
 **Repository:**  
 https://github.com/Sujal-Gowda/the-orchid
 
-**Live Demo:**  
+**Live Link:**  
 https://the-orchid-three.vercel.app
+
+**Demo Video:**  
+https://youtu.be/gaF2gV5fj_k
 
 **Backend API:**  
 https://the-orchid-api.onrender.com
